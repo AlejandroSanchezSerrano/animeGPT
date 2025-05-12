@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="card p-4 shadow">
+    <h2 class="mb-3">Buscar Personaje de Anime</h2>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Ej: Satoru Gojo"
+        [(ngModel)]="personaje"
+        (keyup.enter)="buscar()"
+      />
+      <button class="btn btn-primary" (click)="buscar()">Buscar</button>
+    </div>
+
+    <div *ngIf="cargando" class="text-center my-3">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+
+    <div *ngIf="info" class="mt-4">
+      <h4>{{ info.character_name }}</h4>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Origen:</strong> {{ info.origin }}</li>
+        <li class="list-group-item"><strong>Especie:</strong> {{ info.species }}</li>
+        <li class="list-group-item"><strong>Habilidades:</strong> {{ info.abilities }}</li>
+        <li class="list-group-item" *ngIf="info.affiliations">
+          <strong>Afiliaciones:</strong> {{ info.affiliations }}
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger mt-3">
+      Error al obtener los datos del personaje.
+    </div>
+  </div>
+</div>
